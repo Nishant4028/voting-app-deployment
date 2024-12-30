@@ -1,0 +1,52 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+ paths:
+   include:
+     - result/*
+
+resources:
+- repo: self
+
+pool:
+  name: NishantAgent
+  demands:
+   - agent.name -equals myagent1
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build       
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'devops-decker-con'
+        repository: 'nishant4028/votingappresult'
+        command: 'build'
+        Dockerfile: 'result/Dockerfile'
+        tags: '$(tag)'
+
+stages:
+- stage: Push
+  displayName: push image
+  jobs:
+  - job: push
+    displayName: push      
+    steps:
+    - task: Docker@2
+      displayName: Push image to docker hub
+      inputs:
+        containerRegistry: 'devops-decker-con'
+        repository: 'nishant4028/votingappresult'
+        command: 'push'
+        tags: '$(tag)'
+
+  
