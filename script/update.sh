@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -x
 # Set the repository URL
 REPO_URL="https://<ACCESS-TOKEN>@dev.azure.com/<AZURE-DEVOPS-ORG-NAME>/voting-app/_git/voting-app"
 
@@ -10,6 +13,10 @@ cd /tmp/temp_repo
 # Make changes to the Kubernetes manifest file(s)
 # For example, let's say you want to change the image tag in a deployment.yaml file
 sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
+
+# s1=which microservice we are using (s1,s2,s3 =commandline)
+# s2=repo-name insite docker
+# s3= tag 
 
 # Add the modified files
 git add .
