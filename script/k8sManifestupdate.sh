@@ -8,17 +8,13 @@ if [ -d "/tmp/tmp_repo" ]; then
 fi
 
 # Clone the git repository into the /tmp directory
-git clone https://nishant4028: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@github.com/Nishant4028/voting-app-deployment.git /tmp/tmp_repo
+git clone https://nishant4028:$GITHUB_PAT@github.com/Nishant4028/voting-app-deployment.git /tmp/tmp_repo
 
 # Navigate into the cloned repository directory
 cd /tmp/tmp_repo
 
 # Check out the main branch (or the branch you want to work on)
 git checkout main
-
-# Configure Git user identity
-git config user.name "nishant4028"
-git config user.email "nishant4028@gmail.com"
 
 # Make changes to the Kubernetes manifest file(s)
 sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
