@@ -22,6 +22,10 @@ cd /tmp/tmp_repo
 # Check out the main branch (or the branch you want to work on)
 git checkout main
 
+# Configure Git user identity
+git config user.name "nishant4028"
+git config user.email "nishant4028@gmail.com"
+
 # Make changes to the Kubernetes manifest file(s)
 sed -i "s|image:.*|image: nishant4028/$REPO_NAME:$TAG|g" k8s-specifications/$SERVICE-deployment.yaml
 
