@@ -47,3 +47,17 @@ stages:
         repository: 'nishant4028/votingappvote'
         command: 'push'
         tags: '$(tag)'
+
+- stage: k8s_deployment_Updating
+  displayName: k8s deployment Updating
+  jobs:
+  - job: k8s_deployment_Updating
+    displayName: k8s deployment Updating   
+    steps:
+     - task: AzureCLI@2
+       inputs:
+         azureSubscription: 'azuredev-azure-con'
+         scriptType: 'bash'
+         scriptLocation: 'scriptPath'
+         scriptPath: 'script/k8sManifestupdate.sh'
+         arguments: 'vote votingappvote $(tag)'
