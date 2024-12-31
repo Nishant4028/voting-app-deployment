@@ -54,10 +54,10 @@ stages:
   - job: k8s_deployment_Updating
     displayName: k8s deployment Updating   
     steps:
-     - task: AzureCLI@2
-       inputs:
+      - task: AzureCLI@2
+        inputs:
           azureSubscription: 'azuredev-azure-con'
           scriptType: 'bash'
           scriptLocation: 'scriptPath'
           scriptPath: 'script/k8sManifestupdate.sh'
-          arguments: 'vote votingappvote $(tag) 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'
+          arguments: 'vote votingappvote $(tag) $(GITHUB_PAT)'
