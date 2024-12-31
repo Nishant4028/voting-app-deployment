@@ -1,21 +1,28 @@
 #!/bin/bash
 
-set -x
+set -ex
 
 # Clone the git repository into the /tmp directory
 git clone https://nishant4028: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@github.com/Nishant4028/voting-app-deployment.git /tmp/tmp_repo
 
 # Navigate into the cloned repository directory
-cd /tmp/temp_repo
+cd /tmp/tmp_repo
+
+# Check out the main branch (or the branch you want to work on)
+git checkout main
+
+# Configure Git user identity
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
 
 # Make changes to the Kubernetes manifest file(s)
-# For example, let's say you want to change the image tag in a deployment.yaml file
 sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
 
 # $1=which microservice we are using ($1,$2,$3 =commandline)
-# $2=repo-name insite docker
+# $2=repo-name inside docker
 # $3= tag 
 echo $1-deployment.yaml
+
 # Add the modified files
 git add .
 
@@ -23,7 +30,7 @@ git add .
 git commit -m "Update Kubernetes manifest"
 
 # Push the changes back to the repository
-git push
+git push origin main
 
 # Cleanup: remove the temporary directory
-rm -rf /tmp/temp_repo
+rm -rf /tmp/tmp_repo
