@@ -1,11 +1,9 @@
 #!/bin/bash
 
 set -x
-# Set the repository URL
-REPO_URL="https://<ACCESS-TOKEN>@dev.azure.com/<AZURE-DEVOPS-ORG-NAME>/voting-app/_git/voting-app"
 
 # Clone the git repository into the /tmp directory
-git clone https://nishant4028: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@github.com//https://github.com/Nishant4028/azure-devops-aks-kubernetes-terraform-pipeline.git /tmp/tmp_repo
+git clone https://nishant4028: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@github.com/Nishant4028/voting-app-deployment.git /tmp/tmp_repo
 
 # Navigate into the cloned repository directory
 cd /tmp/temp_repo
