@@ -12,10 +12,10 @@ cd /tmp/temp_repo
 # For example, let's say you want to change the image tag in a deployment.yaml file
 sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
 
-# s1=which microservice we are using (s1,s2,s3 =commandline)
-# s2=repo-name insite docker
-# s3= tag 
-
+# $1=which microservice we are using ($1,$2,$3 =commandline)
+# $2=repo-name insite docker
+# $3= tag 
+echo $1-deployment.yaml
 # Add the modified files
 git add .
 
