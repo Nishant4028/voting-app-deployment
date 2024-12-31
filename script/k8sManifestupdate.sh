@@ -2,6 +2,12 @@
 
 set -ex
 
+# Arguments
+SERVICE=$1
+REPO_NAME=$2
+TAG=$3
+GITHUB_PAT=$4
+
 # Remove the existing directory if it exists
 if [ -d "/tmp/tmp_repo" ]; then
   rm -rf /tmp/tmp_repo
@@ -17,12 +23,7 @@ cd /tmp/tmp_repo
 git checkout main
 
 # Make changes to the Kubernetes manifest file(s)
-sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
-
-# $1=which microservice we are using ($1,$2,$3 =commandline)
-# $2=repo-name inside docker
-# $3= tag 
-echo $1-deployment.yaml
+sed -i "s|image:.*|image: nishant4028/$REPO_NAME:$TAG|g" k8s-specifications/$SERVICE-deployment.yaml
 
 # Add the modified files
 git add .
