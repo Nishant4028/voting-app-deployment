@@ -2,6 +2,11 @@
 
 set -ex
 
+# Remove the existing directory if it exists
+if [ -d "/tmp/tmp_repo" ]; then
+  rm -rf /tmp/tmp_repo
+fi
+
 # Clone the git repository into the /tmp directory
 git clone https://nishant4028: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@github.com/Nishant4028/voting-app-deployment.git /tmp/tmp_repo
 
@@ -12,8 +17,8 @@ cd /tmp/tmp_repo
 git checkout main
 
 # Configure Git user identity
-git config user.name "Your Name"
-git config user.email "your.email@example.com"
+git config user.name "nishant4028"
+git config user.email "nishant4028@gmail.com"
 
 # Make changes to the Kubernetes manifest file(s)
 sed -i "s|image:.*|image: nishant4028/$2:$3|g" k8s-specifications/$1-deployment.yaml
